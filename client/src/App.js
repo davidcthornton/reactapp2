@@ -16,8 +16,8 @@ function Home() {
 
   return (
     <div className="App">
-      <h1>{message}</h1>
-      <button onClick={() => navigate('/page1')}>Go to Page 1</button>
+	  <h1>Test App</h1>
+      <button onClick={() => navigate('/page1')}>Identify Device</button>
       <button onClick={() => navigate('/page2')}>Go to Page 2</button>
     </div>
   );

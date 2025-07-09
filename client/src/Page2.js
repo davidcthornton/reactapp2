@@ -1,4 +1,3 @@
-// Page2.js
 import React from 'react';
 
 function Page2() {
