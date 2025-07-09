@@ -1,8 +1,24 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-function Page1() {
+
+function Page1() {  
+  
+  
+	let serverURL;
+
+	if (!process.env.REACT_APP_API_URL) {
+		serverURL = 'http://127.0.0.1:5000/api/image';
+	} else {
+		serverURL = process.env.REACT_APP_API_URL + '/api/image';
+	}
+  
+  console.log("API base URL:", process.env.REACT_APP_API_URL);
+  console.log("serverURL is " + serverURL);
+  
+  
   const navigate = useNavigate();
   const [responseHtml, setResponseHtml] = useState('');
   const [loading, setLoading] = useState(false);
@@ -16,7 +32,7 @@ function Page1() {
     const formData = new FormData(form);
 
     try {
-      const res = await fetch('http://localhost:5000/api/image', {
+      const res = await fetch(serverURL, {
         method: 'POST',
         body: formData,
       });
