@@ -1,10 +1,63 @@
 // Page1.js
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Page1() {
+  const navigate = useNavigate();
+  const [responseHtml, setResponseHtml] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setResponseHtml('');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch('http://localhost:5000/api/image', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (data.reply) {
+        setResponseHtml(`<p>${data.reply}</p>`);
+      } else {
+        setResponseHtml('Unexpected response format.');
+      }
+    } catch (err) {
+      console.error(err);
+      setResponseHtml('Error contacting server.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div>
-      <h2>This is Page 1</h2>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Device Identifier</h1>
+
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
+        <input type="file" name="images" accept="image/*" multiple required />
+        <div>
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            disabled={loading}
+          >
+            {loading ? 'Identifying...' : 'Send to Assistant'}
+          </button>
+        </div>
+      </form>
+
+      <div
+        id="response"
+        className="mt-4 text-sm text-gray-800 whitespace-pre-line"
+        dangerouslySetInnerHTML={{ __html: responseHtml }}
+      />
     </div>
   );
 }
