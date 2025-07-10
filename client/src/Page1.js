@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import uploadIcon from './assets/upload.svg';
+
 
 function Page1() {  
   
@@ -53,28 +55,39 @@ function Page1() {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Device Identifier</h1>
+    <div className="Page">
+      <h1 className="text-2xl font-bold mb-4">Upload Images</h1>
 
       <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
-        <input type="file" name="images" accept="image/*" multiple required />
+        <input type="file" className="fileinput" name="images" accept="image/*" multiple required />
         <div>
           <button
             type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+			class="gray-button"
             disabled={loading}
           >
+		  <img src={uploadIcon} alt="upload icon" class="icon" style={{ width: '30px', height: '30px' }} />
             {loading ? 'Identifying...' : 'Send to Assistant'}
+			 
           </button>
         </div>
       </form>
 
+		<div class="tips">
+		  <strong>Tips:</strong>
+		  <ol>
+			<li>Take at least two photos, front and back, or from different angles/sides</li>
+			<li>If applicable, remove protective cover</li>
+		  </ol>
+		</div>
+
       <div
         id="response"
-        className="mt-4 text-sm text-gray-800 whitespace-pre-line"
+		className="resultBox"
         dangerouslySetInnerHTML={{ __html: responseHtml }}
       />
     </div>
+	
   );
 }
 

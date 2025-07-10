@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Page1 from './Page1';
 import Page2 from './Page2';
+import './App.css';
+
+import magnifyingGlassIcon from './assets/magnifyingglass.svg';
+
 
 function Home() {
   const [message, setMessage] = useState('');
@@ -15,10 +19,16 @@ function Home() {
   }, []);
 
   return (
-    <div className="App">
-	  <h1>Test App</h1>
-      <button onClick={() => navigate('/page1')}>Identify Device</button>
-      <button onClick={() => navigate('/page2')}>Go to Page 2</button>
+    <div className="Page">
+	  <h1>Device Identifier 1.0</h1>
+      <button onClick={() => navigate('/page1')} class="gray-button">
+		<img src={magnifyingGlassIcon} alt="magnifying glass icon" class="icon" style={{ width: '30px', height: '30px' }} />
+			Identify
+			</button>
+      
+		
+  
+	  
     </div>
   );
 }

@@ -1,5 +1,11 @@
-.App {
-  text-align: center;
+h1 {
+	text-align: center;
+}
+
+.Page {
+  margin: auto;
+  width: 90%;
+  padding: 10px;
 }
 
 .App-logo {
@@ -35,4 +41,64 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.fileinput {
+  display: block;
+  margin: 20px auto; /* top/bottom spacing + auto horizontal centering */
+}
+
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.gray-button, .fileinput::file-selector-button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: #e0e0e0;       /* Light gray */
+  color: #333;                     /* Dark text */
+  border: none;
+  border-radius: 8px;              /* Rounded corners */
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s ease;
+  margin: auto;
+}
+
+.gray-button:hover, .fileinput::file-selector-button:hover{
+  background-color: #cfcfcf;       /* Darker gray on hover */
+}
+
+.gray-button i {
+  font-size: 18px;
+}
+
+
+.tips {
+  font-size: 16px;
+  color: #333;
+  margin-top: 1em;
+}
+
+.tips ol {
+  margin: 0.5em 0 0 1.5em;
+  padding-left: 1em;
+}
+
+.tips li {
+  margin-bottom: 0.4em;
+}
+
+.resultBox {
+	margin-top: 40px;
+	font-weight: bold;
 }
